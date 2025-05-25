@@ -1,33 +1,209 @@
+/* Base styles */
 body {
-    padding-top: 56px; /* Matches typical navbar height in Bootstrap */
+    margin: 0;
+    padding-top: 56px; /* Match navbar height */
     padding-bottom: 20px;
-    margin: 0; /* Remove default margin to eliminate whitespace */
+    background: radial-gradient(circle at 20% 30%, rgba(107, 70, 193, 0.2) 0%, rgba(213, 63, 140, 0.1) 30%, transparent 60%), 
+                linear-gradient(135deg, #1A202C 0%, #2D3748 100%); /* Galaxy glow + gray gradient */
+    color: #E2E8F0; /* Light text for contrast */
+    font-family: 'Arial', sans-serif;
+    position: relative;
+    overflow-x: hidden;
 }
 
-.form-group {
-    margin-bottom: 15px;
+/* Sparkling stars effect */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    pointer-events: none; /* Ensure stars don't interfere with interactions */
+    z-index: -1; /* Place behind content */
 }
 
-
-
-
-html {
-  font-size: 14px;
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="2" cy="2" r="1" fill="rgba(255, 255, 255, 0.6)" /><circle cx="10" cy="20" r="0.5" fill="rgba(246, 135, 179, 0.5)" /><circle cx="50" cy="30" r="0.8" fill="rgba(255, 255, 255, 0.7)" /><circle cx="70" cy="60" r="1" fill="rgba(246, 135, 179, 0.4)" /><circle cx="90" cy="80" r="0.6" fill="rgba(255, 255, 255, 0.5)" /></svg>') repeat;
+    opacity: 0.3; /* Subtle visibility */
+    animation: twinkle 5s infinite alternate;
+    pointer-events: none;
+    z-index: -1;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+/* Twinkling animation for stars */
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.6; }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #8525fb;
+/* Navbar styling */
+.navbar {
+    background: linear-gradient(90deg, #6B46C1 0%, #D53F8C 100%); /* Purple to pink gradient */
+    border-bottom: 2px solid #F687B3; /* Pink accent */
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.navbar-brand, .navbar-nav .nav-link {
+    color: #F687B3 !important; /* Pink text */
 }
 
+.navbar-brand:hover, .navbar-nav .nav-link:hover {
+    color: #FFFFFF !important; /* White on hover for contrast */
+}
 
+/* Main content */
+.container {
+    background: rgba(26, 32, 44, 0.9); /* Semi-transparent dark overlay for readability */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(107, 70, 193, 0.3); /* Subtle purple glow */
+}
+
+h1 {
+    color: #D53F8C; /* Pink header */
+    font-family: 'Press Start 2P', cursive; /* Pixelated font for headers */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.table {
+    background: #2D3748; /* Darker table background */
+    color: #E2E8F0;
+}
+
+.table th {
+    background: #6B46C1; /* Purple header row */
+    color: #FFFFFF;
+}
+
+.table td {
+    border-top: 1px solid #4A5568; /* Light gray border */
+}
+
+.table td a {
+    color: #F687B3; /* Pink links */
+    text-decoration: none;
+}
+
+.table td a:hover {
+    color: #FFFFFF; /* White on hover */
+    text-decoration: underline;
+}
+
+.form-group label {
+    color: #D53F8C; /* Pink labels */
+}
+
+.form-control {
+    background: #4A5568; /* Dark input background */
+    border: 1px solid #6B46C1; /* Purple border */
+    color: #E2E8F0 !important; /* Force light text for contrast */
+    -webkit-text-fill-color: #E2E8F0 !important; /* Fix for some browsers like Chrome */
+}
+
+.form-control:focus {
+    background: #4A5568;
+    border-color: #F687B3; /* Pink focus border */
+    box-shadow: 0 0 5px #F687B3; /* Pink glow on focus */
+    color: #E2E8F0 !important; /* Ensure light text when focused */
+    -webkit-text-fill-color: #E2E8F0 !important;
+}
+
+/* Style placeholder text for better visibility */
+.form-control::placeholder {
+    color: #A0AEC0; /* Lighter gray for placeholder */
+    opacity: 1; /* Ensure placeholder is visible */
+}
+
+.form-control::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #A0AEC0;
+}
+
+.form-control::-moz-placeholder { /* Firefox */
+    color: #A0AEC0;
+}
+
+.form-control:-ms-input-placeholder { /* IE */
+    color: #A0AEC0;
+}
+
+/* Specific style for file input button text */
+.form-control[type="file"]::-webkit-file-upload-button {
+    background: #4A5568; /* Match input background */
+    border: 1px solid #6B46C1; /* Purple border */
+    color: #1A202C !important; /* Dark text for "Choose a file" button */
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-control[type="file"]::-webkit-file-upload-button:hover {
+    background: #6B46C1; /* Purple on hover */
+    color: #FFFFFF !important; /* White text on hover */
+}
+
+.form-control[type="file"]::-ms-browse { /* For IE/Edge */
+    background: #4A5568;
+    border: 1px solid #6B46C1;
+    color: #1A202C !important;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-control[type="file"]::-ms-browse:hover {
+    background: #6B46C1;
+    color: #FFFFFF !important;
+}
+
+.btn-primary {
+    background: #D53F8C; /* Pink button */
+    border: none;
+    font-family: 'Press Start 2P', cursive; /* Pixelated font for buttons */
+    color: #FFFFFF; /* Ensure Upload button text remains light */
+}
+
+.btn-primary:hover {
+    background: #6B46C1; /* Purple on hover */
+    color: #FFFFFF;
+}
+
+.alert {
+    border-radius: 5px;
+}
+
+.alert-success {
+    background: #6B46C1; /* Purple success */
+    color: #FFFFFF;
+}
+
+.alert-danger {
+    background: #D53F8C; /* Pink danger */
+    color: #FFFFFF;
+}
+
+/* Override default link color for File ID in success message */
+.alert-success a {
+    color: #F687B3 !important; /* Match pink download links */
+    text-decoration: none;
+}
+
+.alert-success a:hover {
+    color: #FFFFFF !important; /* White on hover */
+    text-decoration: underline;
+}
+
+/* Ensure pixel font is loaded */
+@font-face {
+    font-family: 'Press Start 2P';
+    src: url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap') format('woff2');
+}

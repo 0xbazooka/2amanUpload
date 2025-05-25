@@ -28,3 +28,4 @@ D:\uni\ERP\project\code\2amanUpload\2amanUpload\obj\Debug\net8.0\refint\2amanUpl
 D:\uni\ERP\project\code\2amanUpload\2amanUpload\obj\Debug\net8.0\2amanUpload.pdb
 D:\uni\ERP\project\code\2amanUpload\2amanUpload\obj\Debug\net8.0\2amanUpload.genruntimeconfig.cache
 D:\uni\ERP\project\code\2amanUpload\2amanUpload\obj\Debug\net8.0\ref\2amanUpload.dll
+D:\uni\ERP\project\code\2amanUpload\2amanUpload\obj\Debug\net8.0\2amanUpload.sourcelink.json
