@@ -1,0 +1,46 @@
+@model List<(string FileId, string FileName, string Title, string Description, string Tags)>
+
+@{
+    ViewData["Title"] = "2amanUpload - Uploaded Files";
+}
+
+<h1>2amanUpload - Uploaded Files</h1>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+else if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>File ID</th>
+                <th>File Name</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Tags</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var upload in Model)
+            {
+                <tr>
+                    <td><strong>@upload.FileId</strong></td>
+                    <td>@upload.FileName</td>
+                    <td>@upload.Title</td>
+                    <td>@upload.Description</td>
+                    <td>@(upload.Tags ?? "None")</td>
+                    <td><a href="@Url.Action("Download", new { fileId = upload.FileId })">Download</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No uploads found.</p>
+}
+
+<a asp-action="Index" class="btn btn-primary">Back to Upload</a>
