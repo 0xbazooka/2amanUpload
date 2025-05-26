@@ -40,11 +40,19 @@ namespace _2amanUpload.Controllers
                 return View("Index", model);
             }
 
+            if (model.File == null || model.File.Length == 0)
+            {
+                _logger.LogWarning("File upload attempt with null or empty file in 2amanUpload.");
+                ViewBag.ErrorMessage = "Please select a file to upload.";
+                return View("Index", model);
+            }
+
             var (isValid, errorMessage) = _validationService.ValidateFile(model.File);
             if (!isValid)
             {
-                ViewBag.ErrorMessage = errorMessage;
-                return View("Index", model);
+                _logger.LogWarning($"Validation failed: {errorMessage} in 2amanUpload.");
+                ViewBag.ErrorMessage = "Unsupported file type. Please upload a .pdf, .doc, .docx, .xls, or .xlsx file.";
+                return View("Index", model); // Return to form with custom error message
             }
 
             try
@@ -52,7 +60,7 @@ namespace _2amanUpload.Controllers
                 var fileId = Guid.NewGuid().ToString();
                 var fileExtension = Path.GetExtension(model.File.FileName).ToLowerInvariant();
                 var safeFileName = $"{fileId}{fileExtension}";
-                var filePath = Path.Combine(_storagePath, safeFileName);
+                var filePath = Path.GetFullPath(Path.Combine(_storagePath, safeFileName));
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
@@ -116,7 +124,7 @@ namespace _2amanUpload.Controllers
                 return NotFound("File not found.");
             }
 
-            var filePath = Path.GetFullPath(Path.Combine(_storagePath, upload.FileName)); // Convert to absolute path
+            var filePath = Path.GetFullPath(Path.Combine(_storagePath, upload.FileName));
             if (!System.IO.File.Exists(filePath))
             {
                 _logger.LogWarning($"File not found on disk: {upload.FileName} in 2amanUpload.");

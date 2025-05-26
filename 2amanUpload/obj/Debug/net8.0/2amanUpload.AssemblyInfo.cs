@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("2amanUpload")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1dcbdde73b92719e7f13a937d48b860ffe4431cb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+265b91c00f78e69f43765f2490f9c95ca2bb41ea")]
 [assembly: System.Reflection.AssemblyProductAttribute("2amanUpload")]
 [assembly: System.Reflection.AssemblyTitleAttribute("2amanUpload")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
